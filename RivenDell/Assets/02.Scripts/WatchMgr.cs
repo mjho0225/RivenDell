@@ -20,12 +20,14 @@ public class WatchMgr : MonoBehaviour
 
     public Slider[] m_ArrowSlider; // 화살표 배열
 
-    float rayLength = 100f;
+    float rayLength = 1000f;
     float currTime; //현재시간
+
+    bool wait = false;
 
     Ray ray;
     RaycastHit hit; //레이힛
-
+    Rigidbody rb;
     enum SliderNumber
     {
         Slider_G,
@@ -45,10 +47,9 @@ public class WatchMgr : MonoBehaviour
         //시침의 방향 랜덤생성(12개)
         //HandPivot의 Rotation의 Y값을 1~12까지의 12개 값에 30을 곱해 360도 단위로 만든다.
 
-        angle = UnityEngine.Random.Range(1, 12); //12 개의 시간 방향 중 랜덤하게 1개
-
-        handPivot.localEulerAngles = new Vector3(0, 0, angle * 30);
         
+
+        rb = GetComponent<Rigidbody>();
 
     }
 
@@ -85,14 +86,15 @@ public class WatchMgr : MonoBehaviour
         // }
         
         ray = new Ray(handPivot.position, handPivot.up);
+
         Debug.DrawRay(handPivot.position, handPivot.up, Color.red);
-        if (Physics.Raycast(ray ,out hit, rayLength,sunMask))
-        {            
-            Debug.Log("검출하였습니다.");
 
+        //만약 시계 UI가 생성되면 레이캐스를 쏴라
 
+        if(wait == true)
+        {
+        WaitRaycast();
         }
-        
     }
 
     
@@ -103,12 +105,17 @@ public class WatchMgr : MonoBehaviour
        
         if (coll.CompareTag("RIGHTHAND"))
         {
-            
+            wait = true;
             Debug.Log("들어와썽!");
             WatchUI.SetActive(true);
             m_ArrowSlider[0].gameObject.SetActive(true);
             currTime = 0;
-            
+
+            //12 개의 시간 방향 중 랜덤하게 1개
+            angle = UnityEngine.Random.Range(1, 12);
+
+            handPivot.localEulerAngles = new Vector3(0, 0, angle * 30);
+
             coll.enabled = false;
         }
     }
@@ -137,4 +144,33 @@ public class WatchMgr : MonoBehaviour
         
     }
 
+    void WaitRaycast()
+    {
+        if (Physics.Raycast(ray, out hit, rayLength, sunMask))
+        {
+            currTime = 0;
+            Debug.Log("검출하였습니다.");
+            //빨간색화살표 생성
+            m_ArrowSlider[1].gameObject.SetActive(true);
+            SN = SliderNumber.Slider_R;
+            target.GetComponent<Collider>().enabled = false;
+            //시계UI 고정
+            if(transform != null)
+            {
+                transform.parent = transform.parent.parent; // 부모로부터 상속해제 후 부모와 동일
+
+                //transform.rotation = Quaternion.Euler(0, target., 0);
+                //transform.rotation = Quaternion.identity; // 로테이션값 초기화
+                transform.eulerAngles = new Vector3(0,transform.eulerAngles.y, 0); //태양 방향의 값으로 평면화
+
+                /*rb.constraints = RigidbodyConstraints.FreezeRotationX;
+                rb.constraints = RigidbodyConstraints.FreezeRotationY;
+                rb.constraints = RigidbodyConstraints.FreezeRotationZ;
+                rb.constraints = RigidbodyConstraints.FreezePositionY;*/
+            }
+            
+
+
+        }
+    }
 }
