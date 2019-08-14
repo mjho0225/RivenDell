@@ -6,6 +6,7 @@
 Assets/AssetStoreTools*
 #포레스트 에셋 3.6 GB 제외 - 2019/08/14 LeeJaeHyun
 Assets/NatureManufacture\ Assets/
+Assets/NatureManufacture*Assets/
 
 # Visual Studio cache directory
 .vs/
