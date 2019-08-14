@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class ButtonBehaviour : MonoBehaviour
 {
     public static ButtonBehaviour Instance;
+
     //스크립트가 활성화 될때마다호출된다. Start함수보다 먼저 호출됨.
     //이벤트의 연결 또는 코루틴을 가동시킬때 주로 사용
     void OnEnable(){
@@ -29,6 +30,7 @@ public class ButtonBehaviour : MonoBehaviour
             ExecuteEvents.Execute(this.gameObject
                                     , new PointerEventData(EventSystem.current)
                                     , ExecuteEvents.pointerEnterHandler);
+                                    Debug.Log("들어온다");
         }
     }
 
@@ -36,5 +38,6 @@ public class ButtonBehaviour : MonoBehaviour
         ExecuteEvents.Execute(this.gameObject
                                     , new PointerEventData(EventSystem.current)
                                     , ExecuteEvents.pointerExitHandler);
+        Debug.Log("Exit");
     }
 }

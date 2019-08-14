@@ -6,20 +6,17 @@ using UnityEngine.UI;
 //DirIntZon에 진입시 힌트 UI 생성
 //진입후 n초 후에 UI가 생성되야한다
 //
-public class ZonEnter : MonoBehaviour {
-    public Collider diz; //충돌 감지할 콜리더
+public class ZonEnter : MonoBehaviour 
+{
 
-    public float currentTime;
-
-    public float n = 2; //UI 생성까지 걸리는 시간
-
-    [SerializeField] private Canvas[] hintUI;
+    public Canvas[] hintUI;
 
     #region ---------------------- 배열
-    enum UINumber {
-        UI1,
-        UI2,
-        UI3,
+    public enum UINumber 
+    {
+        UI1 = 0,
+        UI2 = 1,
+        UI3 = 2,
         UI4,
         UI5,
         UI6,
@@ -28,59 +25,46 @@ public class ZonEnter : MonoBehaviour {
     }
     #endregion
 
-    UINumber UInumber;
+    public UINumber UInumber = UINumber.UI1;
 
     // Start is called before the first frame update
     void Start () {
-        //hintUI = GetComponentsInChildren<Canvas> ();
+        hintUI = GetComponentsInChildren<Canvas>();
         //hintUI.SetActive (false);
     }
 
-    private void OnCollisionEnter (Collision coll) {
-        //만약 
-        if (transform.position.z > coll.transform.position.z) {
-            SpawnUI ();
+    private void OnTriggerEnter(Collider other)
+    {
+        if( other.tag == "Player"){
+            //Invoke("ChangeUI", 1.0f);
+            Invoke("ShowUI", 0.2f);
         }
     }
 
-    // Update is called once per frame
-    void Update () {
-        switch (UInumber) {
-            case UINumber.UI1:
-                UI1 ();
-                break;
-            case UINumber.UI2:
-                UI2 ();
-                break;
-            case UINumber.UI3:
-                UI3 ();
-                break;
-            case UINumber.UI4:
-                UI4 ();
-                break;
-            case UINumber.UI5:
-                UI5 ();
-                break;
-            case UINumber.UI6:
-                UI6 ();
-                break;
-            case UINumber.UI7:
-                UI7 ();
-                break;
-            case UINumber.UI8:
-                UI8 ();
-                break;
-        }
+
+    public void ShowUI () {
+
+        hintUI[(int)UInumber].GetComponent<CanvasGroup> ().interactable = true;
+        hintUI[(int)UInumber].GetComponent<CanvasGroup> ().alpha = 1f;
     }
 
-    void SpawnUI () {
-        currentTime += Time.deltaTime;
-        if (currentTime > n) {
-            //hintUI.SetActive (true);
-            UInumber = UINumber.UI1;
+    public void ChangeUI () {
+
+        hintUI[(int)UInumber].GetComponent<CanvasGroup> ().interactable = false;
+        hintUI[(int)UInumber].GetComponent<CanvasGroup> ().alpha = 0f;
+        
+        //마지막 레이어인지 아닌지 판단하기
+        if (hintUI.Length == (int)UInumber+1){
+            //씬 전환하는 로직 넣기
+
         }
-        for (int i = 0; i < hintUI.Length; i++) {
-            hintUI[i].gameObject.SetActive (true);
+        else
+        {
+            //열거형 변수를 인티져 타입으로 바꾸고, 증감연산자로 1씩 증가.
+            //그 인티저 변수를 열거형 타입으로 바꿈
+            UInumber = (UINumber)((int)UInumber++);
+            hintUI[(int)UInumber].GetComponent<CanvasGroup> ().interactable = true;
+            hintUI[(int)UInumber].GetComponent<CanvasGroup> ().alpha = 1f; 
         }
     }
 
@@ -92,9 +76,11 @@ public class ZonEnter : MonoBehaviour {
 
     #region ----------------- UINumber 함수
     public void UI1 () {
-        hintUI[0].GetComponent<CanvasGroup> ().interactable = false;
-        hintUI[0].GetComponent<CanvasGroup> ().alpha = 0f;
-        UInumber = UINumber.UI2;
+        // hintUI[0].gameObject.SetActive (true);
+        // hintUI[0].GetComponent<CanvasGroup> ().interactable = false;
+        // hintUI[0].GetComponent<CanvasGroup> ().alpha = 0f;
+        // UInumber = UINumber.UI2;
+        ChangeUI ();
     }
 
     public void UI2 () {

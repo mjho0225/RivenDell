@@ -67,16 +67,17 @@ public class LaserController : MonoBehaviour {
 
         flower = Resources.Load<GameObject> ("Flower");
 
+        CreateLine();
     }
 
     void Update () {
-        if (Physics.Raycast (tr.position, tr.forward, out hit, maxDistance)) {
+        if (Physics.Raycast (tr.position, tr.forward, out hit, maxDistance, 1<<9)) {
             line.SetPosition (1, new Vector3 (0, 0, hit.distance));
 
             currButton = hit.collider.gameObject;
 
             //버튼일경우에만 실행
-            if (hit.collider.gameObject.layer == 8 && hand == SteamVR_Input_Sources.RightHand) {
+            if (hit.collider.gameObject.layer == 9 && hand == SteamVR_Input_Sources.RightHand) {
 
                 if (currButton != prevButton) {
 
@@ -94,5 +95,32 @@ public class LaserController : MonoBehaviour {
                 }
             }
         }
+        else if (prevButton != null)
+        {
+            ExecuteEvents.Execute(prevButton
+                                , new PointerEventData(EventSystem.current)
+                                , ExecuteEvents.pointerExitHandler);
+            prevButton = null;
+        }
+    }
+
+    void CreateLine() {
+        line = this.gameObject.AddComponent<LineRenderer>();
+
+        line.useWorldSpace = false;
+        line.receiveShadows = false;
+
+        line.positionCount = 2;
+        line.SetPosition (0, Vector3.zero);
+        line.SetPosition (1, new Vector3(0,0,maxDistance));
+        
+        line.startWidth = 0.03f;
+        line.endWidth = 0.005f;
+
+        //메터리얼 생성
+        Material mt = new Material (Shader.Find ("Unlit/Color"));
+        mt.color = this.color;
+
+        line.material = mt;
     }
 }

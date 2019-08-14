@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 02587e71d5bc38940bb9b44b8965b8c2
+guid: 177552b9112e6044f906ae6567d98bf8
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Jua
+  fontName: Do Hyeon
   fontNames:
-  - Jua
+  - Do Hyeon
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
