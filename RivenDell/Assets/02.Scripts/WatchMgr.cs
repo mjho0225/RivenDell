@@ -9,7 +9,7 @@ public class WatchMgr : MonoBehaviour
 {
     public GameObject WatchUI; //시계 UI
     public Transform handPivot; //시침분침 피봇
-    
+    public Transform bigWatch;
    
     public GameObject target; // 태양 타겟
 
@@ -90,6 +90,7 @@ public class WatchMgr : MonoBehaviour
         ray = new Ray(handPivot.position, handPivot.up);
 
         Debug.DrawRay(handPivot.position, handPivot.up, Color.red);
+        Debug.DrawRay(bigWatch.position, bigWatch.forward, Color.green);
 
         //만약 시계 UI가 생성되면 레이캐스를 쏴라
 
@@ -143,7 +144,13 @@ public class WatchMgr : MonoBehaviour
     }
     private void Slider_B()
     {
-        
+        m_ArrowSlider[2].value = currTime;
+
+        if (currTime > 1)
+        {
+            currTime = 1;
+
+        }
     }
 
     void WaitRaycast()
