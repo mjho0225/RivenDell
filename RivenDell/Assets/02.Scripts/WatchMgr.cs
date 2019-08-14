@@ -9,6 +9,7 @@ public class WatchMgr : MonoBehaviour
 {
     public GameObject WatchUI; //시계 UI
     public Transform handPivot; //시침분침 피봇
+    public GameObject WatchPanel;
 
     
     public GameObject target; // 태양 타겟
@@ -39,9 +40,11 @@ public class WatchMgr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
         WatchUI = GetComponentInChildren<Canvas>().gameObject;
         WatchUI.SetActive(false);
+
+
 
         sunMask = LayerMask.GetMask("SUN");
         //시침의 방향 랜덤생성(12개)
