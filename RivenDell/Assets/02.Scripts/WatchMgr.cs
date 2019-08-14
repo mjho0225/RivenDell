@@ -78,7 +78,7 @@ public class WatchMgr : MonoBehaviour
 
         Vector3 dir = target.transform.position - handPivot.transform.position;
 
-        // float dot = Vector3.Dot(handPivot.localEulerAngles, dir);
+        //float dot = Vector3.Dot(handPivot.localEulerAngles, dir);
 
         //if (Mathf.Approximately(a,b))
         // {
@@ -86,6 +86,10 @@ public class WatchMgr : MonoBehaviour
         //     currTime = 0;
         //     Slider_R();
         // }
+        //if (Vector3.Dot(bigWatch.forward, handPivot.up))
+        //{
+
+        //}
         
         ray = new Ray(handPivot.position, handPivot.up);
 
