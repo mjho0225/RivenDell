@@ -9,9 +9,8 @@ public class WatchMgr : MonoBehaviour
 {
     public GameObject WatchUI; //시계 UI
     public Transform handPivot; //시침분침 피봇
-    public GameObject WatchPanel;
-
     
+   
     public GameObject target; // 태양 타겟
 
     int angle; //각도
