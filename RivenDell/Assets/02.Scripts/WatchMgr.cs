@@ -11,6 +11,7 @@ public class WatchMgr : MonoBehaviour
     public Transform handPivot; //시침분침 피봇
     public Transform bigWatch;
     public Transform emptyPivot;
+    public GameObject finalCanvas;
    
     public GameObject target; // 태양 타겟
 
@@ -40,12 +41,15 @@ public class WatchMgr : MonoBehaviour
     }
     SliderNumber SN;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
 
         WatchUI = GetComponentInChildren<Canvas>().gameObject;
         WatchUI.SetActive(false);
+        finalCanvas.SetActive(false);
 
         sunMask = LayerMask.GetMask("SUN");
         //시침의 방향 랜덤생성(12개)
@@ -134,7 +138,7 @@ public class WatchMgr : MonoBehaviour
 
 
     //시계 트리거 엔터 되면 UI 오픈
-    private void OnTriggerEnter(Collider coll)
+    public void OnTriggerEnter(Collider coll)
     {
        
         if (coll.CompareTag("RIGHTHAND"))
@@ -224,7 +228,7 @@ public class WatchMgr : MonoBehaviour
             float angle2 = Mathf.Acos(Dot) * Mathf.Rad2Deg;
             emptyPivot.localEulerAngles = new Vector3(0, 0, -angle2/2);
             Debug.Log("angle2 : " + angle2);
-
+            finalCanvas.SetActive(true);
         }
         
     }
