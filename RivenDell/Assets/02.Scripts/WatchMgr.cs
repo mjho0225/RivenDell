@@ -200,7 +200,7 @@ public class WatchMgr : MonoBehaviour
             if (transform != null)
             {
                 transform.parent = transform.parent.parent; // 부모로부터 상속해제 후 부모와 동일
-
+                
                 //transform.rotation = Quaternion.Euler(0, target., 0);
                 //transform.rotation = Quaternion.identity; // 로테이션값 초기화
                 transform.eulerAngles = new Vector3(-93, transform.eulerAngles.y, transform.eulerAngles.z); //태양 방향의 값으로 평면화

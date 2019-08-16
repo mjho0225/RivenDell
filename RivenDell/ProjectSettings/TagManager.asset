@@ -8,6 +8,7 @@ TagManager:
   - FxTemporaire
   - RIGHTHAND
   - OBJECT
+  - POSITION
   layers:
   - Default
   - TransparentFX

@@ -20,6 +20,7 @@ namespace Valve.VR.InteractionSystem
     //-------------------------------------------------------------------------
     public class Hand : MonoBehaviour
     {
+        static public Hand Instance;
         // The flags used to determine how an object is attached to the hand.
         [Flags]
         public enum AttachmentFlags
@@ -620,8 +621,9 @@ namespace Valve.VR.InteractionSystem
 
                     if (attachedObjects[index].attachedObject != null)
                     {
-                        attachedObjects[index].attachedObject.transform.parent = parentTransform;
+                        attachedObjects[index].attachedObject.transform.parent.parent = parentTransform;
                     }
+                  
                 }
 
                 if (attachedObjects[index].HasAttachFlag(AttachmentFlags.TurnOnKinematic))

@@ -5,32 +5,35 @@ using Valve.VR;
 
 public class PositionMgr : MonoBehaviour
 {
-    public GameObject[] objPosition;
-
-    bool touch = false;
-    
-  
+    public MeshRenderer tf;
+    bool touchin = false;
+      
     // Start is called before the first frame update
     void Start()
     {
-        
+        tf = GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < objPosition.Length; i++) ;
-        if (touch) ;
+        
     }
 
-    //물체가 오면 붙잡아라.
+    
     private void OnTriggerEnter(Collider coll)
     {
         if (coll.CompareTag("OBJECT"))
         {
-            //물체를 붙잡아라.
+            //물체를 생성해라.(메쉬를 켜라)
+            tf.enabled = true;           
+            Debug.Log("생성되었습니다.");
+
+            //UI를 띄워라.
+
         }
-    // 다시 그랩(클릭)이 되면 물체를 때라.
+        
+    
     }
    
 

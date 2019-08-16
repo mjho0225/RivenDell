@@ -429,7 +429,7 @@ namespace Valve.VR
         /// <param name="overTime">How long you want the blend to take (in seconds)</param>
         public void BlendToSkeleton(float overTime = 0.1f)
         {
-            blendSnapshot = blendPoser.GetBlendedPose(this);
+            //blendSnapshot = blendPoser.GetBlendedPose(this);
             blendPoser = null;
             BlendTo(1, overTime);
         }
