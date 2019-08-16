@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Valve.VR;
 
-public class LaserController : MonoBehaviour {
+public class LaserController : MonoBehaviour
+{
     //나는 먼저 접속하는녀석을 왼손컨트롤러로 하고싶다
 
     //연결된 컨트롤러를 저장할 변수
@@ -28,7 +29,7 @@ public class LaserController : MonoBehaviour {
 
     //라인의 기본색
     public Color color = Color.blue;
-    public Color clockedColor = Color.green;
+    public Color clickedColor = Color.green;
 
     //Raycast 변수
     private RaycastHit hit;
@@ -36,9 +37,6 @@ public class LaserController : MonoBehaviour {
 
     private GameObject currButton;
     private GameObject prevButton;
-
-    //Flower Prefab
-    private GameObject flower;
 
     //델리게이트 선언부
     #region
@@ -52,10 +50,7 @@ public class LaserController : MonoBehaviour {
     #endregion
 
     //Pointer 객체를 저장할 변수
-    public Transform pointer;
-
-    //Teleport 대상 객체
-    public Transform target;
+    //public Transform pointer;
 
     // Start is called before the first frame update
     void Start () {
@@ -65,62 +60,78 @@ public class LaserController : MonoBehaviour {
 
         tr = GetComponent<Transform> ();
 
-        flower = Resources.Load<GameObject> ("Flower");
-
         CreateLine();
     }
 
-    void Update () {
-        if (Physics.Raycast (tr.position, tr.forward, out hit, maxDistance, 1<<9)) {
-            line.SetPosition (1, new Vector3 (0, 0, hit.distance));
-
-            currButton = hit.collider.gameObject;
+    void Update() {
+        if (Physics.Raycast(tr.position, tr.forward, out hit, maxDistance))
+        {
+            line.SetPosition(1, new Vector3(0, 0, hit.distance));
 
             //버튼일경우에만 실행
-            if (hit.collider.gameObject.layer == 9 && hand == SteamVR_Input_Sources.RightHand) {
-
-                if (currButton != prevButton) {
-
+            if (hit.collider.gameObject.layer == 9 && hand == SteamVR_Input_Sources.RightHand)
+            {
+                currButton = hit.collider.gameObject;
+                if (currButton != prevButton)
+                {
                     //모든 버튼에게 포커스아웃 이벤트를 전달(이벤트 생성, 발생)
-                    OnLaserExit ();
+                    OnLaserExit();
                     //현재 가리키고 있는 버튼정보를 포함한 이벤트를 모두 전달
-                    OnLaserEnter (hit.collider.gameObject);
+                    OnLaserEnter(hit.collider.gameObject);
 
                     prevButton = currButton;
                 }
-
                 //트리거 버튼 클릭의 이벤트를 처리
-                if (trigger.GetStateDown (hand)) {
-                    ExecuteEvents.Execute (currButton, new PointerEventData (EventSystem.current), ExecuteEvents.pointerClickHandler);
+                if (trigger.GetStateDown(hand))
+                {
+                    ExecuteEvents.Execute(currButton, new PointerEventData(EventSystem.current), ExecuteEvents.pointerClickHandler);
                 }
             }
+            //if (hit.collider.gameObject.layer == 9)
+            //{
+
+            //    if (hand == rightHand)
+            //    {
+            //        //포인터의 위치 변경 및 각도조정
+            //        pointer.position = tr.position + tr.forward * hit.distance + hit.normal * 0.05f;
+            //        pointer.rotation = Quaternion.LookRotation(hit.normal);
+            //    }
+            else
+            {
+                if (prevButton != null)
+                {
+                    OnLaserExit();
+                    prevButton = null;
+                }
+            }
+            //    else if (prevButton != null)
+            //{
+            //    ExecuteEvents.Execute(prevButton
+            //                        , new PointerEventData(EventSystem.current)
+            //                        , ExecuteEvents.pointerExitHandler);
+            //    prevButton = null;
+            //}
         }
-        else if (prevButton != null)
+        }
+        void CreateLine()
         {
-            ExecuteEvents.Execute(prevButton
-                                , new PointerEventData(EventSystem.current)
-                                , ExecuteEvents.pointerExitHandler);
-            prevButton = null;
-        }
-    }
+            line = this.gameObject.AddComponent<LineRenderer>();
 
-    void CreateLine() {
-        line = this.gameObject.AddComponent<LineRenderer>();
+            line.useWorldSpace = false;
+            line.receiveShadows = false;
 
-        line.useWorldSpace = false;
-        line.receiveShadows = false;
+            line.positionCount = 2;
+            line.SetPosition(0, Vector3.zero);
+            line.SetPosition(1, new Vector3(0, 0, maxDistance));
 
-        line.positionCount = 2;
-        line.SetPosition (0, Vector3.zero);
-        line.SetPosition (1, new Vector3(0,0,maxDistance));
+            line.startWidth = 0.03f;
+            line.endWidth = 0.005f;
+
+            //메터리얼 생성
+            Material mt = new Material(Shader.Find("Unlit/Color"));
+            mt.color = this.color;
+
+            line.material = mt;
         
-        line.startWidth = 0.03f;
-        line.endWidth = 0.005f;
-
-        //메터리얼 생성
-        Material mt = new Material (Shader.Find ("Unlit/Color"));
-        mt.color = this.color;
-
-        line.material = mt;
     }
 }
