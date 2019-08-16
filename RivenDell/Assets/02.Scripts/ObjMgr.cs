@@ -27,18 +27,19 @@ public class ObjMgr : MonoBehaviour
         if (other.CompareTag("POSITION"))
         {
             Debug.Log("부모로부터 벗어났습니다.");
-            transform.parent = transform.parent.parent;
-            DestroyObj();
-            
-        }
-    }
-    private void DestroyObj()
-    {
-        if (transform.parent.parent == CompareTag("Player"))
-        {
+            transform.parent = null;
+            //DestroyObj();
             Debug.Log("파괴되었습니다.");
-            Destroy(tr);
+            Destroy(tr.gameObject);
         }
-
     }
+    //private void DestroyObj()
+    //{
+    //    if (transform.parent.parent == CompareTag("Player"))
+    //    {
+    //        Debug.Log("파괴되었습니다.");
+    //        Destroy(tr);
+    //    }
+
+    //}
 }
