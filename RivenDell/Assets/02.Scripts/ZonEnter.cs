@@ -31,17 +31,18 @@ public class ZonEnter : MonoBehaviour
     void Start () {
         hintUI = GetComponentsInChildren<Canvas>();
         //hintUI.SetActive (false);
+        ShowUI();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if( other.tag == "Player"){
-            Debug.Log("야이거 왜 안되냐");
-            //Invoke("ChangeUI", 1.0f);
-            // Invoke("ShowUI", 0.2f);
-            ShowUI();
-        }
-    }
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if( other.tag == "Player"){
+    //         Debug.Log("야이거 왜 안되냐");
+    //         //Invoke("ChangeUI", 1.0f);
+    //         // Invoke("ShowUI", 0.2f);
+    //         ShowUI();
+    //     }
+    // }
 
 
     public void ShowUI () {
