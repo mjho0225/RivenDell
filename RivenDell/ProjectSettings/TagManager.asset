@@ -9,6 +9,7 @@ TagManager:
   - RIGHTHAND
   - OBJECT
   - POSITION
+  - HINT_MENU
   layers:
   - Default
   - TransparentFX
