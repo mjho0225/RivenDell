@@ -29,6 +29,11 @@ public class WatchMgr : MonoBehaviour
 
     bool wait = false;
     bool ok = false;
+    bool linesun = false;
+
+    private LineRenderer line;
+
+    public Color color = Color.yellow;
 
     Ray ray;
     RaycastHit hit; //레이힛
@@ -54,12 +59,15 @@ public class WatchMgr : MonoBehaviour
         sunMask = LayerMask.GetMask("SUN");
         
        
-        rb = GetComponent<Rigidbody>();       
+        rb = GetComponent<Rigidbody>();
+
+        LineSun();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         switch (SN)
         {
             case SliderNumber.Slider_G :
@@ -109,9 +117,9 @@ public class WatchMgr : MonoBehaviour
         
         Debug.DrawRay(emptyPivot.position, mid, Color.blue);
         Debug.DrawRay(handPivot.position, handPivot.up, Color.red);
-        Debug.DrawRay(bigWatch.position, dir, Color.yellow);
+        //Debug.DrawRay(bigWatch.position, dir, Color.yellow);
         Debug.DrawRay(bigWatch.position, bigWatch.forward, Color.green);
-
+        
         
 
 
@@ -133,7 +141,15 @@ public class WatchMgr : MonoBehaviour
 
         return Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
     }*/
-
+    public void LateUpdate()
+    {
+        if (linesun == true)
+        {
+            
+            line.SetPosition(0, Vector3.zero);
+            line.SetPosition(1, transform.InverseTransformPoint(target.transform.position));
+        }
+    }
 
 
     //시계 트리거 엔터 되면 UI 오픈
@@ -143,6 +159,7 @@ public class WatchMgr : MonoBehaviour
         if (coll.CompareTag("RIGHTHAND"))
         {
             wait = true;
+            linesun = true;
             Debug.Log("들어와썽!");
             WatchUI.SetActive(true);
             m_ArrowSlider[0].gameObject.SetActive(true);
@@ -154,10 +171,10 @@ public class WatchMgr : MonoBehaviour
             angle = UnityEngine.Random.Range(1, 12);
 
             //HandPivot의 Rotation의 Y값을 1~12까지의 12개 값에 30을 곱해 360도 단위로 만든다.
-            handPivot.localEulerAngles = new Vector3(0, 0, angle * 30);            
+            handPivot.localEulerAngles = new Vector3(0, 0, angle * 30);
 
-            coll.enabled = false;
             
+            coll.enabled = false;
         }
     }
     void Slider_G()
@@ -232,6 +249,7 @@ public class WatchMgr : MonoBehaviour
             if(angle == 6 || angle == 12)
             {
                 emptyPivot.localEulerAngles = handPivot.localEulerAngles;
+                
             }
             /*//12시 일 때 남쪽은 12시
             else if(angle == 12)
@@ -271,5 +289,27 @@ public class WatchMgr : MonoBehaviour
             Debug.DrawRay(bigWatch.position, mid, Color.blue);
         }
     }*/
+    void LineSun()
+    {
+        
+            line = this.gameObject.AddComponent<LineRenderer>();
 
+            line.useWorldSpace = false;
+            line.receiveShadows = false;
+
+            line.positionCount = 2;
+
+
+
+            line.startWidth = 0.008f;
+            line.endWidth = 0.0001f;
+
+            //메터리얼 생성
+            Material mt = new Material(Shader.Find("Unlit/Color"));
+            mt.color = this.color;
+
+            line.material = mt;
+        
+        
+    }
 }

@@ -85,7 +85,7 @@ public class LaserController : MonoBehaviour
                 if (trigger.GetStateDown(hand))
                 {
                     Debug.Log("Clicked !!!!");
-                    prevButton = null;
+                    //prevButton = null;
                     ExecuteEvents.Execute(currButton, new PointerEventData(EventSystem.current), ExecuteEvents.pointerClickHandler);
                 }
             }
