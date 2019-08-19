@@ -90,51 +90,36 @@ public class LaserController : MonoBehaviour
                     ExecuteEvents.Execute(currButton, new PointerEventData(EventSystem.current), ExecuteEvents.pointerClickHandler);
                 }
             }
-            //if (hit.collider.gameObject.layer == 9)
-            //{
-
-            //    if (hand == rightHand)
-            //    {
-            //        //포인터의 위치 변경 및 각도조정
-            //        pointer.position = tr.position + tr.forward * hit.distance + hit.normal * 0.05f;
-            //        pointer.rotation = Quaternion.LookRotation(hit.normal);
-            //    }
-            else
-            {
-                if (prevButton != null)
-                {
-                    OnLaserExit();
-                    prevButton = null;
-                }
-            }
-            //    else if (prevButton != null)
-            //{
-            //    ExecuteEvents.Execute(prevButton
-            //                        , new PointerEventData(EventSystem.current)
-            //                        , ExecuteEvents.pointerExitHandler);
-            //    prevButton = null;
-            //}
-        }
-        }
-        void CreateLine()
+        }            
+        else
         {
-            line = this.gameObject.AddComponent<LineRenderer>();
+            if (prevButton != null)
+            {
+                OnLaserExit();
+                prevButton = null;
+            }
+        }
+    }
 
-            line.useWorldSpace = false;
-            line.receiveShadows = false;
+    void CreateLine()
+    {
+        line = this.gameObject.AddComponent<LineRenderer>();
 
-            line.positionCount = 2;
-            line.SetPosition(0, Vector3.zero);
-            line.SetPosition(1, new Vector3(0, 0, maxDistance));
+        line.useWorldSpace = false;
+        line.receiveShadows = false;
 
-            line.startWidth = 0.03f;
-            line.endWidth = 0.005f;
+        line.positionCount = 2;
+        line.SetPosition(0, Vector3.zero);
+        line.SetPosition(1, new Vector3(0, 0, maxDistance));
 
-            //메터리얼 생성
-            Material mt = new Material(Shader.Find("Unlit/Color"));
-            mt.color = this.color;
+        line.startWidth = 0.03f;
+        line.endWidth = 0.005f;
 
-            line.material = mt;
+        //메터리얼 생성
+        Material mt = new Material(Shader.Find("Unlit/Color"));
+        mt.color = this.color;
+
+        line.material = mt;
         
     }
 }
