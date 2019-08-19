@@ -11,7 +11,7 @@ public class WatchMgr : MonoBehaviour
     public Transform handPivot; //시침분침 피봇
     public Transform bigWatch;
     public Transform emptyPivot;
-    public GameObject finalCanvas;
+    //public GameObject finalCanvas;
    
     public GameObject target; // 태양 타겟
 
@@ -54,7 +54,7 @@ public class WatchMgr : MonoBehaviour
 
         WatchUI = GetComponentInChildren<Canvas>().gameObject;
         WatchUI.SetActive(false);
-        finalCanvas.SetActive(false);
+        //finalCanvas.SetActive(false);
 
         sunMask = LayerMask.GetMask("SUN");
         
@@ -265,7 +265,7 @@ public class WatchMgr : MonoBehaviour
             }
             
             Debug.Log("angle2 : " + angle2);
-            finalCanvas.SetActive(true);
+            //finalCanvas.SetActive(true);
         }
         
     }
