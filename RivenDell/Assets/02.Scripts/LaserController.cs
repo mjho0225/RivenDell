@@ -67,13 +67,16 @@ public class LaserController : MonoBehaviour
         if (Physics.Raycast(tr.position, tr.forward, out hit, maxDistance))
         {
             line.SetPosition(1, new Vector3(0, 0, hit.distance));
+            Debug.Log("1");
 
             //버튼일경우에만 실행
             if (hit.collider.gameObject.layer == 9 && hand == SteamVR_Input_Sources.RightHand)
             {
+                Debug.Log("2");
                 currButton = hit.collider.gameObject;
                 if (currButton != prevButton)
                 {
+                    Debug.Log("3");
                     //모든 버튼에게 포커스아웃 이벤트를 전달(이벤트 생성, 발생)
                     OnLaserExit();
                     //현재 가리키고 있는 버튼정보를 포함한 이벤트를 모두 전달

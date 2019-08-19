@@ -36,8 +36,10 @@ public class ZonEnter : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if( other.tag == "Player"){
+            Debug.Log("야이거 왜 안되냐");
             //Invoke("ChangeUI", 1.0f);
-            Invoke("ShowUI", 0.2f);
+            // Invoke("ShowUI", 0.2f);
+            ShowUI();
         }
     }
 
@@ -75,56 +77,56 @@ public class ZonEnter : MonoBehaviour
     // }
 
     #region ----------------- UINumber 함수
-    public void UI1 () {
-        // hintUI[0].gameObject.SetActive (true);
-        // hintUI[0].GetComponent<CanvasGroup> ().interactable = false;
-        // hintUI[0].GetComponent<CanvasGroup> ().alpha = 0f;
-        // UInumber = UINumber.UI2;
-        ChangeUI ();
-    }
+    // public void UI1 () {
+    //     // hintUI[0].gameObject.SetActive (true);
+    //     // hintUI[0].GetComponent<CanvasGroup> ().interactable = false;
+    //     // hintUI[0].GetComponent<CanvasGroup> ().alpha = 0f;
+    //     // UInumber = UINumber.UI2;
+    //     ChangeUI ();
+    // }
 
-    public void UI2 () {
-        Debug.Log ("change UI1");
-        hintUI[1].GetComponent<CanvasGroup> ().interactable = false;
-        hintUI[1].GetComponent<CanvasGroup> ().alpha = 0f;
-        UInumber = UINumber.UI3;
-    }
+    // public void UI2 () {
+    //     Debug.Log ("change UI1");
+    //     hintUI[1].GetComponent<CanvasGroup> ().interactable = false;
+    //     hintUI[1].GetComponent<CanvasGroup> ().alpha = 0f;
+    //     UInumber = UINumber.UI3;
+    // }
 
-    public void UI3 () {
-        hintUI[2].GetComponent<CanvasGroup> ().interactable = false;
-        hintUI[2].GetComponent<CanvasGroup> ().alpha = 0f;
-        UInumber = UINumber.UI4;
-    }
+    // public void UI3 () {
+    //     hintUI[2].GetComponent<CanvasGroup> ().interactable = false;
+    //     hintUI[2].GetComponent<CanvasGroup> ().alpha = 0f;
+    //     UInumber = UINumber.UI4;
+    // }
 
-    public void UI4 () {
-        hintUI[3].GetComponent<CanvasGroup> ().interactable = false;
-        hintUI[3].GetComponent<CanvasGroup> ().alpha = 0f;
-        UInumber = UINumber.UI5;
-    }
+    // public void UI4 () {
+    //     hintUI[3].GetComponent<CanvasGroup> ().interactable = false;
+    //     hintUI[3].GetComponent<CanvasGroup> ().alpha = 0f;
+    //     UInumber = UINumber.UI5;
+    // }
 
-    public void UI5 () {
-        hintUI[4].GetComponent<CanvasGroup> ().interactable = false;
-        hintUI[4].GetComponent<CanvasGroup> ().alpha = 0f;
-        UInumber = UINumber.UI6;
-    }
+    // public void UI5 () {
+    //     hintUI[4].GetComponent<CanvasGroup> ().interactable = false;
+    //     hintUI[4].GetComponent<CanvasGroup> ().alpha = 0f;
+    //     UInumber = UINumber.UI6;
+    // }
 
-    public void UI6 () {
-        hintUI[5].GetComponent<CanvasGroup> ().interactable = false;
-        hintUI[5].GetComponent<CanvasGroup> ().alpha = 0f;
-        UInumber = UINumber.UI7;
-    }
+    // public void UI6 () {
+    //     hintUI[5].GetComponent<CanvasGroup> ().interactable = false;
+    //     hintUI[5].GetComponent<CanvasGroup> ().alpha = 0f;
+    //     UInumber = UINumber.UI7;
+    // }
 
-    public void UI7 () {
-        hintUI[6].GetComponent<CanvasGroup> ().interactable = false;
-        hintUI[6].GetComponent<CanvasGroup> ().alpha = 0f;
-        UInumber = UINumber.UI8;
-    }
+    // public void UI7 () {
+    //     hintUI[6].GetComponent<CanvasGroup> ().interactable = false;
+    //     hintUI[6].GetComponent<CanvasGroup> ().alpha = 0f;
+    //     UInumber = UINumber.UI8;
+    // }
 
-    public void UI8 () {
-        hintUI[7].GetComponent<CanvasGroup> ().interactable = false;
-        hintUI[7].GetComponent<CanvasGroup> ().alpha = 0f;
+    // public void UI8 () {
+    //     hintUI[7].GetComponent<CanvasGroup> ().interactable = false;
+    //     hintUI[7].GetComponent<CanvasGroup> ().alpha = 0f;
         
-    }
+    // }
 
     #endregion
 }
