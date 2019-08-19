@@ -52,8 +52,7 @@ public class WatchMgr : MonoBehaviour
         finalCanvas.SetActive(false);
 
         sunMask = LayerMask.GetMask("SUN");
-        //시침의 방향 랜덤생성(12개)
-        //HandPivot의 Rotation의 Y값을 1~12까지의 12개 값에 30을 곱해 360도 단위로 만든다.
+        
        
         rb = GetComponent<Rigidbody>();       
     }
@@ -116,7 +115,7 @@ public class WatchMgr : MonoBehaviour
         
 
 
-        //만약 시계 UI가 생성되면 레이캐스를 쏴라
+        //만약 시계 UI가 생성되면 레이캐스트를 쏴라
 
         if (wait == true)
         {
@@ -150,9 +149,12 @@ public class WatchMgr : MonoBehaviour
             currTime = 0;
 
             //12 개의 시간 방향 중 랜덤하게 1개
+            //시침의 방향 랜덤생성(12개)
+
             angle = UnityEngine.Random.Range(1, 12);
 
-            handPivot.localEulerAngles = new Vector3(0, 0, angle * 30);
+            //HandPivot의 Rotation의 Y값을 1~12까지의 12개 값에 30을 곱해 360도 단위로 만든다.
+            handPivot.localEulerAngles = new Vector3(0, 0, angle * 30);            
 
             coll.enabled = false;
             
@@ -170,7 +172,7 @@ public class WatchMgr : MonoBehaviour
     }
     private void Slider_R()
     {       
-            m_ArrowSlider[1].value = currTime;
+        m_ArrowSlider[1].value = currTime;
         m_ArrowSlider[2].value = currTime;
 
         if (currTime > 1)
@@ -226,7 +228,24 @@ public class WatchMgr : MonoBehaviour
 
             float Dot = Vector3.Dot(handPivot.up, bigWatch.forward);
             float angle2 = Mathf.Acos(Dot) * Mathf.Rad2Deg;
-            emptyPivot.localEulerAngles = new Vector3(0, 0, -angle2/2);
+            //6시 일 때 남쪽은 6시
+            if(angle == 6 || angle == 12)
+            {
+                emptyPivot.localEulerAngles = handPivot.localEulerAngles;
+            }
+            /*//12시 일 때 남쪽은 12시
+            else if(angle == 12)
+            {
+                emptyPivot.localEulerAngles = Vector3.back;
+            }*/
+            else if(angle > 6 && angle <12){
+                emptyPivot.localEulerAngles = new Vector3(0, 0, -angle2 / 2);
+            }
+            else
+            {
+                emptyPivot.localEulerAngles = new Vector3(0, 0, angle2 / 2);
+            }
+            
             Debug.Log("angle2 : " + angle2);
             finalCanvas.SetActive(true);
         }
