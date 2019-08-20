@@ -55,7 +55,6 @@ public class GrabController : MonoBehaviour
                 ReleaseObject();
             }
         }
-
     }
     
     #region"트리거 체크"
@@ -122,7 +121,4 @@ public class GrabController : MonoBehaviour
         }
         grabObject = null;
     }
-
-
-
 }

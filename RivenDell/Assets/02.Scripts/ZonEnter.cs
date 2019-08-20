@@ -14,6 +14,7 @@ public class ZonEnter : MonoBehaviour {
     public int currPage = 0;
     public GameObject menuBar;
 
+
     void Start () {
         
         //hintUI.SetActive (false);
@@ -51,6 +52,8 @@ public class ZonEnter : MonoBehaviour {
     {
         if(other.transform.tag == "Player"){
             ShowUI();
+            // GameObject rightHand = GameObject.FindGameObjectWithTag("RIGHTHAND");
+            // rightHand.GetComponent<LaserController>().CreateLine();
         }
     }
 
@@ -58,7 +61,7 @@ public class ZonEnter : MonoBehaviour {
         SteamVR_Fade.Start(Color.black, 2f);
         
         yield return new WaitForSeconds (2f);
-        SceneManager.LoadScene("SecondScene");
+        SceneManager.LoadScene("SMScene2");
     }
     public void StartC(){
           StartCoroutine("ChangeScene");
