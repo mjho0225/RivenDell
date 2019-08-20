@@ -10,12 +10,15 @@ public class BraceZon : MonoBehaviour
     public GameObject[] hintUI;
     public int currPage = 0;
     public GameObject menuBar;
-    
+
+    GameObject legPosition;
 
     void Start () {
         
         //hintUI.SetActive (false);
         ShowUI ();
+        legPosition = GameObject.Find("LegPosition");
+        legPosition.SetActive(false);
         
     }
 
@@ -38,6 +41,10 @@ public class BraceZon : MonoBehaviour
         } else {
             ++currPage;
             hintUI[currPage].gameObject.SetActive(true);
+            if(currPage == 1)
+            {
+                legPosition.SetActive(true);
+            }
             if(currPage == 7){
             Debug.Log("마지막 화면 - 씬 전환");
                 menuBar.SetActive(false);               
