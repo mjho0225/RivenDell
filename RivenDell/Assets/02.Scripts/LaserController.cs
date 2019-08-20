@@ -21,12 +21,12 @@ public class LaserController : MonoBehaviour {
     public SteamVR_Action_Boolean trigger = SteamVR_Actions.default_InteractUI;
 
     //동적으로 생성할 라인랜더러
-    private LineRenderer line;
+    public LineRenderer line;
 
     public float maxDistance = 10.0f;
 
     //라인의 기본색
-    public Color color = Color.blue;
+    public Color color = Color.red;
     public Color clickedColor = Color.green;
 
     //Raycast 변수
@@ -35,6 +35,8 @@ public class LaserController : MonoBehaviour {
 
     private GameObject currButton;
     private GameObject prevButton;
+
+    bool lineCreate = false;
 
     //델리게이트 선언부
     #region
@@ -60,20 +62,26 @@ public class LaserController : MonoBehaviour {
         tr = GetComponent<Transform> ();
 
         CreateLine();
-        line.enabled = false;
+        
+        
+         
     }
 
     void Update () {
         if(Physics.Raycast(tr.position, tr.forward, out hit, maxDistance, 1<<5)) {
             //CreateLine();
-            line.enabled = true;
+            
+            
+            
             line.SetPosition (1, new Vector3(0,0, hit.distance));
 
         }
         if (Physics.Raycast (tr.position, tr.forward, out hit, maxDistance, 1 << 9)) {
             //if (Physics.Raycast (tr.position, tr.forward, out hit, maxDistance, 1 >> 5)) {
                 //CreateLine();
-                line.enabled = true;
+                
+                
+                
                 line.SetPosition (1, new Vector3 (0, 0, hit.distance));
 
                 //버튼일경우에만 실행
@@ -104,6 +112,7 @@ public class LaserController : MonoBehaviour {
     }
 
     public void CreateLine () {
+
         line = this.gameObject.AddComponent<LineRenderer> ();
 
         line.useWorldSpace = false;
@@ -113,8 +122,8 @@ public class LaserController : MonoBehaviour {
         line.SetPosition (0, Vector3.zero);
         line.SetPosition (1, new Vector3 (0, 0, maxDistance));
 
-        line.startWidth = 0.03f;
-        line.endWidth = 0.005f;
+        line.startWidth = 0.002f;
+        line.endWidth = 0.0001f;
 
         //메터리얼 생성
         Material mt = new Material (Shader.Find ("Unlit/Color"));
