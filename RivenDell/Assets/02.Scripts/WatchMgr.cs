@@ -215,6 +215,7 @@ public class WatchMgr : MonoBehaviour
         {
             
             Debug.Log("검출하였습니다.");
+            
             //시계UI 고정
             if (transform != null)
             {
@@ -236,6 +237,7 @@ public class WatchMgr : MonoBehaviour
             m_ArrowSlider[1].gameObject.SetActive(true);
             currTime = 0;
             
+
             m_ArrowSlider[2].gameObject.SetActive(true);
             //SN = SliderNumber.Slider_B;
 
@@ -265,6 +267,7 @@ public class WatchMgr : MonoBehaviour
             }
             
             Debug.Log("angle2 : " + angle2);
+            
             //finalCanvas.SetActive(true);
         }
         
