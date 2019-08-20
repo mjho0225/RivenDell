@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Valve.VR;
 
 public class SceneMgr : MonoBehaviour
 {
@@ -25,13 +26,15 @@ public class SceneMgr : MonoBehaviour
     }
     private void OnLevelWasLoaded(int level)
     {
-        if(level == 1)
+        SteamVR_Fade.Start(Color.clear, 2f);
+        if (level == 1)
         {
             Destroy(introUI);
             transform.position = startPoint.position;
         }
         if(level == 2)
         {
+            SteamVR_Fade.Start(Color.clear, 2f);
             Destroy(watchUI);
             transform.position = spawnPoint.position;//new Vector3(80, 32.7f, 158);
         }
