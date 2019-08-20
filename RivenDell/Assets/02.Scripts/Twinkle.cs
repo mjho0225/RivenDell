@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Twinkle : MonoBehaviour
 {
-
+    RaycastHit hit;
     public GameObject text;
 
     // Start is called before the first frame update
@@ -25,9 +25,9 @@ public class Twinkle : MonoBehaviour
             gameObject.SetActive(false);
             gameObject.SetActive(true);
         }
-     
-        
-        
+
+
+       transform.position = hit.transform.position;//Raycasthit가 맞은 좌표를 가져옴
         
     }
 }
