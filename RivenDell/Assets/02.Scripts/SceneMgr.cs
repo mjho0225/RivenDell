@@ -14,8 +14,8 @@ public class SceneMgr : MonoBehaviour
     {
         startPoint = GameObject.Find("StartPoint").GetComponent<Transform>();
         spawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
-        //watchUI = GameObject.Find("Direction_Canvas").GetComponent<GameObject>();
-        //introUI = GameObject.Find("Canvas_Intro").GetComponent<GameObject>();
+        watchUI = GameObject.Find("Direction_Canvas").GetComponent<GameObject>();
+        introUI = GameObject.Find("Canvas_Intro").GetComponent<GameObject>();
     }
 
     // Update is called once per frame
@@ -27,12 +27,12 @@ public class SceneMgr : MonoBehaviour
     {
         if(level == 1)
         {
-            //Destroy(introUI);
+            Destroy(introUI);
             transform.position = startPoint.position;
         }
         if(level == 2)
         {
-            //Destroy(watchUI);
+            Destroy(watchUI);
             transform.position = spawnPoint.position;//new Vector3(80, 32.7f, 158);
         }
     }
