@@ -149,7 +149,7 @@ public class LaserController : MonoBehaviour {
     void DrawLine()
     {
         Debug.Log("그렸습니다!");
-        float lineWidth2 = 0.01f;
+        float lineWidth2 = 0.1f;
         //라인을 드로잉하기위한 게임오브젝트를 생성
         GameObject lineObject = new GameObject("Line");
         //라이렌더러 컴포넌트를 추가

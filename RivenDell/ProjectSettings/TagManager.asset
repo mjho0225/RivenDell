@@ -10,6 +10,7 @@ TagManager:
   - OBJECT
   - POSITION
   - HINT_MENU
+  - HITPOINT
   layers:
   - Default
   - TransparentFX
