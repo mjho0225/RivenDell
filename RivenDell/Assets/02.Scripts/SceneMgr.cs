@@ -6,48 +6,31 @@ using Valve.VR;
 
 public class SceneMgr : MonoBehaviour
 {
-    Transform spawnPoint;
-    Transform startPoint;
-    GameObject watchUI;
-    GameObject introUI;
-    GameObject target;
+    //Transform spawnPoint;
+    //Transform startPoint;
     // Start is called before the first frame update
     void Start()
     {
-        
+        //startPoint = GameObject.Find("StartPoint").GetComponent<Transform>();
+//spawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
+        gameObject.GetComponent<IntroMoveCtrl>().enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private void OnLevelWasLoaded(int level)
     {
-        if (level == 1)
-        {
-            
-            SteamVR_Fade.Start(Color.clear, 2f);
-            gameObject.GetComponent<IntroMoveCtrl>().enabled = false;
-            introUI = GameObject.Find("Canvas_Intro").GetComponent<GameObject>();
-            Destroy(introUI);
-
-            startPoint = GameObject.Find("StartPoint").GetComponent<Transform>();
-            transform.position = startPoint.position;
-
-            target = GameObject.Find("Sun").GetComponent<GameObject>();
-
-
-        }
-        if(level == 2)
-        {
-            SteamVR_Fade.Start(Color.clear, 2f);
-
-            watchUI = GameObject.Find("Direction_Canvas").GetComponent<GameObject>();
-            Destroy(watchUI);
-
-            spawnPoint = GameObject.Find("SpawnPoint").GetComponent<Transform>();
-            transform.position = spawnPoint.position;//new Vector3(80, 32.7f, 158);
-        }
+        //if(level == 1)
+        //{
+        //    transform.position = startPoint.position;
+        
+        //}
+        //if (level == 2)
+        //{
+        //    transform.position = spawnPoint.position;//new Vector3(80, 32.7f, 158);
+        //}
     }
 }

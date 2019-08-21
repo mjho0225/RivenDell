@@ -13,7 +13,7 @@ public class WatchMgr : MonoBehaviour
     public Transform emptyPivot;
     //public GameObject finalCanvas;
    
-    GameObject target; // 태양 타겟
+    public GameObject target; // 태양 타겟
 
     int angle; //각도
     int sunMask;
@@ -51,7 +51,7 @@ public class WatchMgr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        target = GameObject.Find("Sun");
         WatchUI = GetComponentInChildren<Canvas>().gameObject;
         WatchUI.SetActive(false);
         //finalCanvas.SetActive(false);

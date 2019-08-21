@@ -61,7 +61,7 @@ public class ZonEnter : MonoBehaviour {
         SteamVR_Fade.Start(Color.black, 2f);
         
         yield return new WaitForSeconds (2f);
-        SceneManager.LoadScene("SMScene2");
+        SceneManager.LoadScene("SecondScene");
     }
     public void StartC(){
           StartCoroutine("ChangeScene");
