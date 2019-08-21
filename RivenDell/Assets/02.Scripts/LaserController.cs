@@ -35,6 +35,7 @@ public class LaserController : MonoBehaviour {
 
     private GameObject currButton;
     private GameObject prevButton;
+    Vector3 hitPosition = Vector3.zero;
 
     bool lineCreate = false;
 
@@ -62,16 +63,13 @@ public class LaserController : MonoBehaviour {
         tr = GetComponent<Transform> ();
 
         CreateLine();
-        
-        
-         
     }
 
     void Update () {
         if(Physics.Raycast(tr.position, tr.forward, out hit, maxDistance, 1<<5)) {
             //CreateLine();
             
-            
+            //hitPosition = hit.point;
             
             line.SetPosition (1, new Vector3(0,0, hit.distance));
 
@@ -79,8 +77,6 @@ public class LaserController : MonoBehaviour {
         if (Physics.Raycast (tr.position, tr.forward, out hit, maxDistance, 1 << 9)) {
             //if (Physics.Raycast (tr.position, tr.forward, out hit, maxDistance, 1 >> 5)) {
                 //CreateLine();
-                
-                
                 
                 line.SetPosition (1, new Vector3 (0, 0, hit.distance));
 

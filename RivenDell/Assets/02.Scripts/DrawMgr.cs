@@ -49,14 +49,14 @@ public class DrawMgr : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider coll)
-    {
-        if (coll.CompareTag("COLOR"))
-        {
-            Image img = coll.gameObject.GetComponentsInChildren<Image>()[1];
-            lineColor = img.color;
-        }
-    }
+    // void OnTriggerEnter(Collider coll)
+    // {
+    //     if (coll.CompareTag("COLOR"))
+    //     {
+    //         Image img = coll.gameObject.GetComponentsInChildren<Image>()[1];
+    //         lineColor = img.color;
+    //     }
+    // }
     #endregion
 
     #region  USER_FUNCTION
