@@ -11,12 +11,13 @@ public class HitPointPosition : MonoBehaviour
 {
     public GameObject[] hitPoints;
     int currPoint = 0;
-    
+    GameObject menuBar;
 
     // Start is called before the first frame update
     void Start()
     {
         hitPoints = GameObject.FindGameObjectsWithTag("HITPOINT");
+        menuBar = GameObject.Find("Menu - Panel");
     }
 
     // Update is called once per frame
@@ -30,7 +31,7 @@ public class HitPointPosition : MonoBehaviour
         //만약 판넬에 파괴할 것이 없다면 다음판넬로 넘어가라
         if(currPoint == 3)
         {
-
+            menuBar.SetActive(true);
         }
         //만약 판넬에 파괴할 것이 있다면 모두 없어질때까지
         else

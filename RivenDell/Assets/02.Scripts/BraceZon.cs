@@ -41,9 +41,13 @@ public class BraceZon : MonoBehaviour
         } else {
             ++currPage;
             hintUI[currPage].gameObject.SetActive(true);
-            if(currPage == 1)
+            if(currPage == 3)
             {
                 legPosition.SetActive(true);
+            }
+            if(currPage == 5)
+            {
+                menuBar.SetActive(false);
             }
             if(currPage == 9){
             Debug.Log("마지막 화면 - 씬 전환");
