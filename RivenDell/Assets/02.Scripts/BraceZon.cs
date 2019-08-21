@@ -45,13 +45,15 @@ public class BraceZon : MonoBehaviour
             {
                 legPosition.SetActive(true);
             }
-            if(currPage == 5)
+            if(currPage == 5 || currPage == 6 || currPage == 7 || currPage == 8)
             {
+                
                 menuBar.SetActive(false);
             }
             if(currPage == 9){
             Debug.Log("마지막 화면 - 씬 전환");
-                menuBar.SetActive(false);               
+                menuBar.SetActive(false);
+                legPosition.SetActive(false);
             }
             
         }

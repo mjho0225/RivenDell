@@ -52,7 +52,7 @@ public class HitPointPosition : MonoBehaviour
     IEnumerator RaiseCircle()
     {
         Debug.Log("커져라!");
-        Vector3 size = new Vector3(0.4f, 0.4f, 0.4f);
+        Vector3 size = new Vector3(2f, 2f, 2f);
 
         while (hitPoints[currPoint].transform.localScale.x <= size.x)
         {
