@@ -45,7 +45,7 @@ public class BraceZon : MonoBehaviour
             {
                 legPosition.SetActive(true);
             }
-            if(currPage == 7){
+            if(currPage == 9){
             Debug.Log("마지막 화면 - 씬 전환");
                 menuBar.SetActive(false);               
             }
