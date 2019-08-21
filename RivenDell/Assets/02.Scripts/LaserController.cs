@@ -22,11 +22,13 @@ public class LaserController : MonoBehaviour {
 
     //동적으로 생성할 라인랜더러
     public LineRenderer line;
+    public LineRenderer line2;
 
     public float maxDistance = 10.0f;
 
     //라인의 기본색
     public Color color = Color.red;
+    public Color color2 = Color.white;
     public Color clickedColor = Color.green;
 
     //Raycast 변수
@@ -68,7 +70,22 @@ public class LaserController : MonoBehaviour {
     }
 
     void Update () {
-        if(Physics.Raycast(tr.position, tr.forward, out hit, maxDistance, 1<<5)) {
+        if(Physics.Raycast(tr.position, tr.forward, out hit, maxDistance, 1 << 12) && trigger.GetStateDown(righthand)){
+            Debug.Log("파레트검출1");
+            Debug.Log("힛포인트:" + hit.point);
+            DrawLine();
+        }
+        if (Physics.Raycast(tr.position, tr.forward, out hit, maxDistance, 1 << 12) && trigger.GetState(righthand))
+        {
+            Debug.Log("파레트검출");
+            Vector3 position = hit.point;
+            //position += tr.position;
+
+            ++line2.positionCount;
+            line2.SetPosition(line2.positionCount - 1, position);
+        }
+
+        if (Physics.Raycast(tr.position, tr.forward, out hit, maxDistance, 1<<5)) {
             //CreateLine();
             
             
@@ -131,5 +148,31 @@ public class LaserController : MonoBehaviour {
 
         line.material = mt;
 
+    }
+
+    void DrawLine()
+    {
+        Debug.Log("그렸습니다!");
+        float lineWidth2 = 0.01f;
+        //라인을 드로잉하기위한 게임오브젝트를 생성
+        GameObject lineObject = new GameObject("Line");
+        //라이렌더러 컴포넌트를 추가
+        line2 = lineObject.AddComponent<LineRenderer>();
+        //머티리얼 생성
+        Material mt2 = new Material(Shader.Find("Unlit/Color"));
+        mt2.color = color2;
+
+        
+    //속성설정
+        //line2.useWorldSpace = false; //로컬좌표
+        line2.positionCount = 1;
+        line2.numCapVertices = 20; //끝부분을 부드럽게 처리
+        line2.startWidth = lineWidth2; //라인 폭
+        line2.endWidth = lineWidth2;
+        line2.material = mt2;
+
+        Vector3 position = hit.point;
+        //position += tr.position;
+        line2.SetPosition(0, position);
     }
 }
