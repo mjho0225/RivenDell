@@ -9,6 +9,7 @@ public class ForestScene : MonoBehaviour
     GameObject introUI;
     Transform thePlayer;
     Transform startPoint;
+    GameObject target;
     
     // Start is called before the first frame update
 
@@ -17,7 +18,7 @@ public class ForestScene : MonoBehaviour
         SteamVR_Fade.Start(Color.clear, 0f);
         introUI = GameObject.Find("Canvas_Intro");
         introUI.SetActive(false);
-       
+        target = GameObject.Find("Sun");
 
         startPoint = GameObject.Find("StartPoint").GetComponent<Transform>();
         thePlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();

@@ -51,7 +51,7 @@ public class WatchMgr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.Find("Sun");
+        
         WatchUI = GetComponentInChildren<Canvas>().gameObject;
         WatchUI.SetActive(false);
         //finalCanvas.SetActive(false);
@@ -164,7 +164,7 @@ public class WatchMgr : MonoBehaviour
             WatchUI.SetActive(true);
             m_ArrowSlider[0].gameObject.SetActive(true);
             currTime = 0;
-
+            target = GameObject.Find("Sun");
             //12 개의 시간 방향 중 랜덤하게 1개
             //시침의 방향 랜덤생성(12개)
 
@@ -265,8 +265,8 @@ public class WatchMgr : MonoBehaviour
             {
                 emptyPivot.localEulerAngles = new Vector3(0, 0, angle2 / 2);
             }
-            
-            Debug.Log("angle2 : " + angle2);
+
+            Destroy(gameObject, 3f);
             
             //finalCanvas.SetActive(true);
         }
