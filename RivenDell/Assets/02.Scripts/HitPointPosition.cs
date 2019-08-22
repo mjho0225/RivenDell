@@ -10,14 +10,21 @@ using UnityEngine.UI;
 public class HitPointPosition : MonoBehaviour
 {
     public GameObject[] hitPoints;
-    int currPoint = 0; //static 변경
-    GameObject menuBar;
+    public int currPoint; //static 변경
+    //GameObject menuBar;
+
+    public static HitPointPosition Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         hitPoints = GameObject.FindGameObjectsWithTag("HITPOINT");
-        menuBar = GameObject.Find("MenuPanel");
+        //menuBar = GameObject.Find("MenuPanel");
     }
 
     // Update is called once per frame
@@ -26,13 +33,14 @@ public class HitPointPosition : MonoBehaviour
         
     }
 
-    IEnumerator BigPoint() {
+    public IEnumerator BigPoint() {
 
         //만약 판넬에 파괴할 것이 없다면 다음판넬로 넘어가라
          if(currPoint == 3)
          {
-             Debug.Log("버튼켜줘");
-             menuBar.SetActive(true);
+            Debug.Log("버튼켜줘");
+            //menuBar.SetActive(true);
+             
          }
          //만약 판넬에 파괴할 것이 있다면 모두 없어질때까지
          else
@@ -54,7 +62,7 @@ public class HitPointPosition : MonoBehaviour
         }
     }
 
-    IEnumerator RaiseCircle()
+    public IEnumerator RaiseCircle()
     {
         Debug.Log("커져라!");
         Vector3 size = new Vector3(2f, 2f, 2f);

@@ -186,5 +186,7 @@ public class LaserController : MonoBehaviour {
         Vector3 position = hit.point;
         //position += tr.position;
         line2.SetPosition(0, position);
+
+        Destroy(lineObject, 1f);
     }
 }

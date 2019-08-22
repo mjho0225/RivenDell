@@ -13,13 +13,15 @@ public class BraceZon : MonoBehaviour
 
     GameObject legPosition;
 
+    
+
     void Start () {
         
         //hintUI.SetActive (false);
         ShowUI ();
         legPosition = GameObject.Find("LegPosition");
         legPosition.SetActive(false);
-        
+       
     }
 
     public void ShowUI () 
@@ -41,14 +43,29 @@ public class BraceZon : MonoBehaviour
         } else {
             ++currPage;
             hintUI[currPage].gameObject.SetActive(true);
-            if(currPage == 3)
-            {
-                legPosition.SetActive(true);
-            }
-            if (currPage == 5 || currPage == 6 || currPage == 7 || currPage == 8)
-            {
-                menuBar.SetActive(false);
-            }
+            //if(currPage == 3)
+            //{
+            //    legPosition.SetActive(true);
+            //}
+            //if(currPage == 5 && HitPointPosition.Instance.currPoint < 3)
+            //{
+            //    menuBar.SetActive(false);
+            //}
+            //if (currPage == 5 && HitPointPosition.Instance.currPoint ==4)
+            //{
+            //    menuBar.SetActive(true);
+            //}
+
+            //if((currPage >= 5 || currPage <= 8) && HitPointPosition.Instance.currPoint <3)
+            //{
+            //    menuBar.SetActive(false);
+            //}
+            //if ((currPage >= 5 || currPage <=8 )&& HitPointPosition.Instance.currPoint == 3)
+            //{
+            //    menuBar.SetActive(true);   
+
+            //    //currPoint가 켜졌을때 메뉴바 O                       
+            //}
             if (currPage == 9){
             Debug.Log("마지막 화면 - 씬 전환");
                 menuBar.SetActive(false);

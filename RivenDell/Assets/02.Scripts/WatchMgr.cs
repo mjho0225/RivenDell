@@ -51,7 +51,7 @@ public class WatchMgr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //gameObject.SetActive(false);
         WatchUI = GetComponentInChildren<Canvas>().gameObject;
         WatchUI.SetActive(false);
         //finalCanvas.SetActive(false);
