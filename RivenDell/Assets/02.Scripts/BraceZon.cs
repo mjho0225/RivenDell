@@ -42,6 +42,7 @@ public class BraceZon : MonoBehaviour
                         
         } else {
             ++currPage;
+            Destroy(lineObj);
             hintUI[currPage].gameObject.SetActive(true);
             if (currPage == 3)
             {
