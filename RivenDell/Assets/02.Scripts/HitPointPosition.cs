@@ -13,12 +13,12 @@ public class HitPointPosition : MonoBehaviour
     public int currPoint; //static 변경
     //GameObject menuBar;
 
-    public static HitPointPosition Instance;
+    //public static HitPointPosition Instance;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
+    //private void Awake()
+    //{
+    //    Instance = this;
+    //}
 
     // Start is called before the first frame update
     void Start()
@@ -50,8 +50,7 @@ public class HitPointPosition : MonoBehaviour
 
        
             yield return StartCoroutine(RaiseCircle());
-        
-            
+                    
 
             //Destroy(hitPoints[currPoint].gameObject);
             hitPoints[currPoint].SetActive(false);
@@ -69,7 +68,7 @@ public class HitPointPosition : MonoBehaviour
 
         while (hitPoints[currPoint].transform.localScale.x <= size.x)
         {
-            hitPoints[currPoint].transform.localScale += Vector3.one * 0.05f;
+            hitPoints[currPoint].transform.localScale += Vector3.one * 0.1f;
             yield return new WaitForSeconds(0.1f);
         }
     }

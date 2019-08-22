@@ -69,22 +69,20 @@ public class LaserController : MonoBehaviour {
 
 
     void Update () {
-        if(Physics.Raycast(tr.position, tr.forward, out hit, maxDistance, 1 << 13) && trigger.GetStateDown(righthand)){
-            Debug.Log("파레트검출1");
-            Debug.Log("힛포인트:" + hit.point);
-
+        if(Physics.Raycast(tr.position, tr.forward, out hit, maxDistance, 1 << 13) && trigger.GetStateDown(righthand))
+        {
             DrawLine();
         }
-        if (Physics.Raycast(tr.position, tr.forward, out hit, maxDistance, 1 << 12) && trigger.GetState(righthand))
+        if (line2 != null && Physics.Raycast(tr.position, tr.forward, out hit, maxDistance, 1 << 12) && trigger.GetState(righthand))
         {
-            Debug.Log("파레트검출");
+            
             Vector3 position = hit.point;
             //position += tr.position;
 
             ++line2.positionCount;
             line2.SetPosition(line2.positionCount - 1, position);
         }
-        if (Physics.Raycast(tr.position, tr.forward, out hit, maxDistance, 1 << 13) && trigger.GetState(righthand))
+        if (line2 != null && Physics.Raycast(tr.position, tr.forward, out hit, maxDistance, 1 << 13) && trigger.GetState(righthand))
         {
             Debug.Log("파레트검출");
             Vector3 position = hit.point;
@@ -187,6 +185,6 @@ public class LaserController : MonoBehaviour {
         //position += tr.position;
         line2.SetPosition(0, position);
 
-        Destroy(lineObject, 1f);
+        
     }
 }

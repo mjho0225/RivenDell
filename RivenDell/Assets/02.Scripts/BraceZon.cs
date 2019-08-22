@@ -12,7 +12,7 @@ public class BraceZon : MonoBehaviour
     public GameObject menuBar;
 
     GameObject legPosition;
-
+    GameObject lineObj;
     
 
     void Start () {
@@ -21,7 +21,7 @@ public class BraceZon : MonoBehaviour
         ShowUI ();
         legPosition = GameObject.Find("LegPosition");
         legPosition.SetActive(false);
-       
+        lineObj = GameObject.Find("Line");
     }
 
     public void ShowUI () 
@@ -32,41 +32,33 @@ public class BraceZon : MonoBehaviour
     public void ChangeUI () 
     {
         hintUI[currPage].gameObject.SetActive(false);
+        Destroy(lineObj);
         //마지막 레이어인지 아닌지 판단하기
         if (hintUI.Length == currPage + 1) {
            
             //씬 전환하는 로직 넣기
             //Menu 패널을 안보이게하고
             //menuBar.SetActive(false);
-            
-            //
+                        
         } else {
             ++currPage;
             hintUI[currPage].gameObject.SetActive(true);
-            //if(currPage == 3)
-            //{
-            //    legPosition.SetActive(true);
-            //}
-            //if(currPage == 5 && HitPointPosition.Instance.currPoint < 3)
-            //{
-            //    menuBar.SetActive(false);
-            //}
-            //if (currPage == 5 && HitPointPosition.Instance.currPoint ==4)
-            //{
-            //    menuBar.SetActive(true);
-            //}
-
+            if (currPage == 3)
+            {
+                legPosition.SetActive(true);
+            }           
             //if((currPage >= 5 || currPage <= 8) && HitPointPosition.Instance.currPoint <3)
             //{
             //    menuBar.SetActive(false);
             //}
-            //if ((currPage >= 5 || currPage <=8 )&& HitPointPosition.Instance.currPoint == 3)
+            //if ((currPage >= 5 || currPage <=8 )&& HitPointPosition.Instance.currPoint >= 3)
             //{
             //    menuBar.SetActive(true);   
 
             //    //currPoint가 켜졌을때 메뉴바 O                       
             //}
-            if (currPage == 9){
+            if (currPage == 9)
+            {
             Debug.Log("마지막 화면 - 씬 전환");
                 menuBar.SetActive(false);
                 legPosition.SetActive(false);
@@ -79,7 +71,7 @@ public class BraceZon : MonoBehaviour
         SteamVR_Fade.Start(Color.black, 2f);
         
         yield return new WaitForSeconds (2f);
-        SceneManager.LoadScene("JMScene");
+        SceneManager.LoadScene("IntroScene");
     }
     public void StartC(){
           StartCoroutine("ChangeScene");
