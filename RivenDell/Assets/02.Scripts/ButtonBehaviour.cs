@@ -33,6 +33,11 @@ public class ButtonBehaviour : MonoBehaviour
                                     , ExecuteEvents.pointerEnterHandler);
                                     Debug.Log("들어온다");
         }
+        
+        // //PointEnter 됬을때 Audio를 재생하고싶다
+        // AudioSource Audio = GetComponent<AudioSource>();
+        // Audio.Play();
+        
     }
 
     public void LaserExit(){

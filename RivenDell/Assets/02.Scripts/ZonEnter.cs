@@ -40,6 +40,7 @@ public class ZonEnter : MonoBehaviour {
         } else {
             ++currPage;
             hintUI[currPage].gameObject.SetActive(true);
+            
             if(currPage == 6){
             Debug.Log("마지막 화면 - 씬 전환");
                 menuBar.SetActive(false);               
